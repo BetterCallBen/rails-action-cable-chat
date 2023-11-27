@@ -1,0 +1,12 @@
+<div data-controller="chatroom" data-chatroom-chatroom-id-value="<%= @chatroom.id %>">
+  <h1><%= @chatroom.name %></h1>
+  <div class="messages" data-chatroom-target="messages">
+    <% @messages.each do |message| %>
+      <%= render "messages/message", message: message %>
+    <% end %>
+  </div>
+  <%= simple_form_for [@chatroom, @message], html: { data: { action: "turbo:submit-end->chatroom#reset"}} do |f| %>
+    <%= f.input :content %>
+    <%= f.submit %>
+  <% end %>
+</div>
